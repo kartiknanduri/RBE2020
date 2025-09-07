@@ -22,7 +22,7 @@ int main(){
     gpio_put(pin_map[i], 1);
     }
 
-  while(true){  
+  while(true){                     // loops through the array and display each line of the array on the display
     for (int num = 0;num < 7; num++){
       for (int num = 0;num <= 5; num++){
         display_num(num);
