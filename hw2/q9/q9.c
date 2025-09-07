@@ -26,7 +26,7 @@ int main(){
     gpio_put(pin_map[i], 1);
     }
 
-  while(true){  
+  while(true){                     // loops through each line and assigns the LED values to each LED 
     for (int num = 0;num < 7; num++){
       for (int num = 0;num <= 9; num++){
         display_num(num);
