@@ -18,35 +18,33 @@ const bool digits[10][7] = {   // segment patterns for 0–9
 
 volatile int currnum = 0;  // must be volatile (used in callback)
 
-// display a digit on the 7-segment
-void display_num(int num){       
+
+void display_num(int num){       // display a digit on the 7-segment
     for (int i = 0; i < 7; i++){
         gpio_put(pin_map[i], digits[num % 10][i]);
     }
 }
 
-// timer callback function (runs every interval)
-bool num_update_callback(struct repeating_timer *t) {
+
+bool num_update_callback(struct repeating_timer *t) {           // timer callback function (runs every interval)
     currnum = (currnum + 1) % 10;   // increment, wrap at 9
     display_num(currnum);
     return true;   // keep repeating
 }
 
 int main() {
-    // initialize segment pins
-    for(int i=0; i<7 ; i++){         
+    for(int i=0; i<7 ; i++){          // initialize segment pins
         gpio_init(pin_map[i]);
         gpio_set_dir(pin_map[i], GPIO_OUT);
         gpio_put(pin_map[i], 1);   // all off at start 
     }
     
-    // create repeating timer (every 1000 ms)
-    struct repeating_timer timer;
+    
+    struct repeating_timer timer;                  // create repeating timer (every 1000 ms)
     add_repeating_timer_ms(1000, num_update_callback, NULL, &timer);
     
-    // main loop handles button
-    while(true){
-        
+    
+    while(true){              // main loop handles button   
     }
 
     return 0;
