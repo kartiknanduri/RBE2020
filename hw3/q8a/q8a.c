@@ -29,24 +29,17 @@ int main(){
   gpio_init(btn_pin);             //initialize Button GPIO pin
   gpio_set_dir(btn_pin, GPIO_IN);
   gpio_pull_up(btn_pin);          //set button pin to pullup
-  int currnum = 0;
-  display_num(0);
+  int currnum = 0;                //initializes numbers
+  display_num(0);                 //initializes display
   
   while(true){
     bool pressed = !gpio_get(btn_pin);  // inverts logic for the button
-    if (pressed){
+    if (pressed){                       // if the button is pressed, it displays the next number
       currnum += 1;
       display_num(currnum%10);
       //sleep_ms(100);
     }
-    
-    //for (int num = 0;num < 7; num++){
-    //  for (int num = 0;num <= 9; num++){
-    //   display_num(num);
-    //    sleep_ms(1000);
-    //    }
-    //  }  
-    }
+
   return(0);    //return does nothing but for standard practice
 } 
   
